@@ -1,0 +1,38 @@
+<div class="container-fluid p-lg-5 p-3 bg-body-tertiary">
+    <h2 class="text-center text-secondary fw-bold">USERS</h2>
+    <div class="row my-3">
+        <div class="col-lg-5 col-md-6 col-12">
+            <input type="text" class="form-control shadow-sm" placeholder="Seach..." aria-label="Search"
+                aria-describedby="addon-wrapping" (input)="searchValue($event)">
+        </div>
+    </div>
+    <table class="table table-hover shadow">
+        <thead>
+            <tr>
+                <th scope="col">Sr. No.</th>
+                <th scope="col">Avatar</th>
+                <th scope="col">Login</th>
+                <th scope="col">Type</th>
+                <th scope="col">Site Admin</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider" *ngIf="users.length > 0">
+            <tr *ngFor="let item of users;index as i">
+                <th scope="row">{{i + 1}}</th>
+                <td>
+                    <img [src]="item.avatar_url" class="avatar-img" [alt]="item.login" />
+                </td>
+                <td>{{item.login}}</td>
+                <td>{{item.type}}</td>
+                <td>
+                    <span class="badge" [ngClass]="item.site_admin ? 'text-bg-success' : 'text-bg-danger'">
+                        {{item.site_admin}}
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="users.length === 0">
+        <h3 class="text-center text-secondary mt-5">No Data Found</h3>
+    </div>
+</div>
